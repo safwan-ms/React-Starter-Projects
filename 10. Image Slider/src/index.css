@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.body {
+  @apply h-screen;
+}
+.container {
+  @apply relative flex justify-center items-center w-[600px] h-[450px];
+}
+.current-image {
+  @apply rounded-md shadow-md h-full w-full;
+}
+.arrow {
+  @apply absolute w-8 h-8 text-white drop-shadow-md cursor-pointer;
+}
+.arrow-left {
+  @apply left-4;
+}
+.arrow-right {
+  @apply right-4;
+}
+.circle-indicators {
+  @apply flex absolute bottom-8;
+}
+.current-indicator {
+  @apply bg-white h-4 w-4 rounded-full border-none outline-none m-1 cursor-pointer;
+}
+.inactive-indicator {
+  @apply bg-gray-500;
+}
