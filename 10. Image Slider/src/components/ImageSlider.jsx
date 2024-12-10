@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
+import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 
 const ImageSlider = ({ url }) => {
   const [images, setImages] = useState([]);
@@ -7,11 +7,10 @@ const ImageSlider = ({ url }) => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  //Fetching Images
-  const fetchImages = async (getUrl) => {
+  const fetchImages = async (url) => {
     try {
       setLoading(true);
-      const response = await fetch(getUrl);
+      const response = await fetch(url);
       const data = await response.json();
       if (data) {
         setImages(data);
@@ -28,49 +27,49 @@ const ImageSlider = ({ url }) => {
   const handleNext = () => {
     setCurrentSlide(currentSlide === images.length - 1 ? 0 : currentSlide + 1);
   };
+
   useEffect(() => {
     if (url !== "") fetchImages(url);
   }, [url]);
-  console.log(images);
   if (errorMsg !== null) {
-    return (
-      <h1 className="flex items-center justify-center w-screen h-screen text-2xl text-red-600">
-        Something Went wrong Check your connection...!
-      </h1>
-    );
+    return <h1> Something went wrong make sure you are connected...</h1>;
   }
   if (loading) {
-    return (
-      <h1 className="flex items-center justify-center w-screen h-screen text-2xl text-red-600">
-        Loading Please Wait
-      </h1>
-    );
+    return <h1> Loading Please Wait a sec..</h1>;
   }
+  console.log(images);
   return (
     <div className="container">
-      {images.length && images
-        ? images.map((imageItem, index) => {
+      {images && images.length
+        ? images.map(({ download_url, id }, index) => {
             return (
               <img
-                key={imageItem.id}
-                alt={imageItem.download_url}
-                src={imageItem.download_url}
+                key={id}
                 className={
                   currentSlide === index
                     ? "current-image"
                     : "current-image hidden"
                 }
+                src={download_url}
+                alt={download_url}
               />
             );
           })
         : null}
-      <BsArrowLeftCircle className="arrow arrow-left" onClick={handlePrev} />
-      <BsArrowRightCircle className="arrow arrow-right" onClick={handleNext} />
+      <BsArrowLeftCircleFill
+        className="arrow arrow-left"
+        onClick={handlePrev}
+      />
+      <BsArrowRightCircleFill
+        className="arrow arrow-right"
+        onClick={handleNext}
+      />
       <span className="circle-indicators">
         {images && images.length
           ? images.map((_, index) => {
               return (
                 <button
+                  key={index}
                   className={
                     currentSlide === index
                       ? "current-indicator"

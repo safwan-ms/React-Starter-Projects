@@ -1,0 +1,47 @@
+.container {
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  display: flex;
+}
+.card-body {
+  margin: 50px;
+  border: 2px solid black;
+  flex-basis: 20%;
+  width: 200px;
+  height: 200px;
+}
+.card-img {
+  width: 200px;
+  height: 200px;
+}
+/* styles.css */
+.flex {
+  display: flex;
+}
+.load-more-btn {
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: #4f46e5; /* Indigo color */
+  color: white;
+  font-weight: 600; /* Semi-bold */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow */
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.load-more-btn:hover {
+  background-color: #4338ca; /* Darker indigo on hover */
+}
+
+.load-more-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.4); /* Focus ring effect */
+}
+
+.load-more-btn:disabled {
+  opacity: 0.5; /* Disabled state */
+  cursor: not-allowed;
+}
